@@ -8,15 +8,51 @@
         <title>{% block title %}{% endblock %}</title>
 
         <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ STATIC_URL }}/css/main.css">
         <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+            <script src="{{ STATIC_URL }}js/html5shiv.js"></script>
+            <script src="{{ STATIC_URL }}js/respond.min.js"></script>
         <![endif]-->
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="content_wrap">
+            <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Скрытая навигация</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{% url 'pages:index' %}">Ski rent</a>
+                    </div>
 
-        <script src="{{ STATIC_URL }}jquery/jquery-2.1.0.min.js"></script>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            {% block body %}{% endblock %}
+        </div>
+
+        <footer class="footer"><div class="container"><h2>footer</h2></div></footer>
+
+        <script src="{{ STATIC_URL }}js/jquery/jquery-2.1.0.min.js"></script>
         <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
