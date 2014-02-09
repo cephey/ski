@@ -21,7 +21,13 @@
             {% block body %}{% endblock %}
         </div>
 
-        <footer class="footer"><div class="container"><h2>footer</h2></div></footer>
+        <footer class="footer">
+            <div class="container">
+                <div class="col-md-6">Copyright &copy; Ski rent 2014 Все права защищены</div>
+                <div class="col-md-6 right">
+                    {{ address }}<br/>{{ phones }}<br/><a href="http://vk.com/ski_rent">Мы Вконтакте</a>
+                </div>
+        </footer>
 
         <script src="{{ STATIC_URL }}js/jquery/jquery-2.1.0.min.js"></script>
         <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>

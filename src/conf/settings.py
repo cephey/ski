@@ -22,6 +22,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'south',
     'pages',
 )
 
@@ -75,3 +76,11 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# weather
+WEATHER_CITY = 'Moscow'
+WEATHER_API_URL = 'http://api.worldweatheronline.com/free/v1/weather.ashx'
+WEATHER_API_KEY = '7wv697hms48fkth4b4r7hwtg'

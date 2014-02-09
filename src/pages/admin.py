@@ -1,3 +1,9 @@
+#coding:utf-8
 from django.contrib import admin
+from pages.models import ServicesText
 
-# Register your models here.
+
+class ServicesTextAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description', 'url_path', 'order')
+
+admin.site.register(ServicesText, ServicesTextAdmin)

@@ -1,12 +1,19 @@
+@import 'fonts';
+@import 'mixins';
+
 /* переопределяю bootstrap */
+$body_color: #ddf;
+
 .navbar {
     margin-bottom: 0;
 }
 .navbar-brand {
     font-size: 30px;
+    font-family: Knewave;
 }
 html, body {
     height: 100%;
+    background: $body_color;
 }
 
 /* variables */
@@ -14,17 +21,80 @@ $footer_height: 100px;
 
 /*  */
 .index_blur {
-    background: url(/static/i/blur.jpg) no-repeat 50% 0 #fff;
-    height: 500px;
+    background: url(../i/blur.jpg) no-repeat 50% 0 $body_color;
+    color: #fff;
+    .index_title {
+        // height: 400px;
+        padding: 50px 0 100px;
+    }
+    .services_wrap {
+        background: url(../i/back_top.jpg) no-repeat 50% 0 $body_color;
+        box-shadow: 0 0 0.4em #666;
+        @include border-radius(3px);
+        .col-md-3 {
+            text-align: center;
+            a {
+                cursor: default;
+                img {
+                    cursor: pointer;
+                    width: 80%;
+                    margin: 20px auto 10px;
+                    box-shadow: 0 0 0.4em #444;
+                }
+            }
+            p {
+                width: 80%;
+                margin: 0 auto 20px;
+                padding-top: 5px;
+            }
+            button {
+                margin-bottom: 30px;
+            }
+        }
+    }
 }
 .content_wrap {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    padding-bottom: $footer_height;
+    padding-bottom: $footer_height + 50px;
 }
 .footer {
+    padding-top: 20px;
     margin-top: -$footer_height;
-    background: #444;
+    background: url(../i/pw_maze_black.png);
     height: $footer_height;
+    color: #999;
+    .right {
+        text-align: right;
+    }
+}
+.weather_wrap {
+    height: 300px;
+    background: #222;
+    @include border-radius(3px);
+    box-shadow: 0 0 0.4em #222;
+    .bg {
+        height: 60%;
+        text-align: center;
+        .sun {
+            background: url(../i/weather_icons/tick_weather_020.png) no-repeat;
+            height: 128px;
+            width: 128px;
+            margin: 0 auto;
+        }
+        .temp_c {
+            padding-top: 30px;
+            font-size: 6em;
+        }
+    }
+    .sep {
+        height: 1px;
+        width: 94%;
+        margin: 0 auto;
+        background: #444;
+    }
+    .sm {
+        height: 40%;
+    }
 }
