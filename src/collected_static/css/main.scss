@@ -1,0 +1,30 @@
+/* переопределяю bootstrap */
+.navbar {
+    margin-bottom: 0;
+}
+.navbar-brand {
+    font-size: 30px;
+}
+html, body {
+    height: 100%;
+}
+
+/* variables */
+$footer_height: 100px;
+
+/*  */
+.index_blur {
+    background: url(/static/i/blur.jpg) no-repeat 50% 0 #fff;
+    height: 500px;
+}
+.content_wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    padding-bottom: $footer_height;
+}
+.footer {
+    margin-top: -$footer_height;
+    background: #444;
+    height: $footer_height;
+}
