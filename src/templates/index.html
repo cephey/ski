@@ -18,20 +18,13 @@
                             <div class="row bg">
                                 <div class="col-md-6">
                                     <h4>Москва</h4>
-                                    <div class="sun"></div>
+                                    <div class="w_icons-sprite w_icons-tick_weather_{{ w_index }}"></div>
                                 </div>
                                 <div class="col-md-6 temp_c">{{ weather.data.current_condition.0.temp_C }}&deg;</div>
                             </div>
                             <div class="row sep"></div>
                             <div class="row sm"></div>
-                            <!-- <div class="w_t">
-                                <div></div>
-                                {{ weather.data.current_condition.0.temp_C }}&deg;
-                            </div>
-                            <div class="w_m"></div>
-                            <div class="w_b"></div> -->
                         </div>
-                        {#{{ weather.data.current_condition }}#}
                     {% endif %}
                 </div>
             </div>

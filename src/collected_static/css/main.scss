@@ -1,5 +1,6 @@
 @import 'fonts';
 @import 'mixins';
+@import 'w_icons';
 
 /* переопределяю bootstrap */
 $body_color: #ddf;
@@ -77,12 +78,6 @@ $footer_height: 100px;
     .bg {
         height: 60%;
         text-align: center;
-        .sun {
-            background: url(../i/weather_icons/tick_weather_020.png) no-repeat;
-            height: 128px;
-            width: 128px;
-            margin: 0 auto;
-        }
         .temp_c {
             padding-top: 30px;
             font-size: 6em;

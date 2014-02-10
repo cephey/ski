@@ -1,8 +1,8 @@
 #coding: utf-8
-import requests
-from django.conf import settings
 from django.views.generic.base import TemplateView
+
 from pages.models import ServicesText
+from pages.helpers import get_weather_index, get_weather
 
 
 class IndexView(TemplateView):
@@ -11,17 +11,11 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
 
-        url = '{0}?q={1}&format=json&num_of_days={2}&key={3}'.format(
-            settings.WEATHER_API_URL, settings.WEATHER_CITY, 2, settings.WEATHER_API_KEY)
+        context['weather'] = get_weather()
 
-        context['weather'] = None
-        try:
-            weather = requests.get(url)
-            if weather.status_code == 200:
-                context['weather'] = weather.json()
-        except:
-            pass
-        # import pdb; pdb.set_trace()
+        if context['weather']:
+            code = context['weather']['data']['current_condition'][0]['weatherCode']
+            context['w_index'] = get_weather_index(code)
 
         context['services'] = ServicesText.objects.all()[:4]
         context['address'] = '420095 г. Казань, ул. Горьковское шоссе 49 к2'
