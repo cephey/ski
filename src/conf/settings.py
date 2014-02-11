@@ -1,3 +1,4 @@
+#coding:utf-8
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -24,6 +25,7 @@ INSTALLED_APPS = (
 
     'south',
     'pages',
+    'weather',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,5 +84,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # weather
 WEATHER_CITY = 'Moscow'
+WEATHER_CITY_TRANS = u'Москва'
 WEATHER_API_URL = 'http://api.worldweatheronline.com/free/v1/weather.ashx'
 WEATHER_API_KEY = '7wv697hms48fkth4b4r7hwtg'

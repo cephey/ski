@@ -2,7 +2,7 @@
 from django.views.generic.base import TemplateView
 
 from pages.models import ServicesText
-from pages.helpers import get_weather_index, get_weather
+from weather.api import WeatherAPI
 
 
 class IndexView(TemplateView):
@@ -11,11 +11,8 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
 
-        context['weather'] = get_weather()
-
-        if context['weather']:
-            code = context['weather']['data']['current_condition'][0]['weatherCode']
-            context['w_index'] = get_weather_index(code)
+        api = WeatherAPI()
+        context['weather'] = api.widget()
 
         context['services'] = ServicesText.objects.all()[:4]
         context['address'] = '420095 г. Казань, ул. Горьковское шоссе 49 к2'

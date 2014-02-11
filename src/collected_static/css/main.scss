@@ -76,8 +76,7 @@ $footer_height: 100px;
     @include border-radius(3px);
     box-shadow: 0 0 0.4em #222;
     .bg {
-        height: 60%;
-        text-align: center;
+        height: 57%;
         .temp_c {
             padding-top: 30px;
             font-size: 6em;
@@ -85,11 +84,8 @@ $footer_height: 100px;
     }
     .sep {
         height: 1px;
-        width: 94%;
+        width: 100%;
         margin: 0 auto;
         background: #444;
-    }
-    .sm {
-        height: 40%;
     }
 }

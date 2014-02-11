@@ -12,21 +12,28 @@
                     <p>Мы готовы предложить вам лучшее снаряжение для занятий спортом и активным отдыхом. У вас появилась прекрасная возможность провести время с друзьями занимаясь любимыми видами спорта.</p>
                     <p>Позвоните нам перед приездом и мы подготовим необходимое вам снаряжение заранее.</p>
                 </div>
-                <div class="col-md-4 col-md-offset-1">
-                    {% if weather %}
-                        <div class="weather_wrap">
-                            <div class="row bg">
-                                <div class="col-md-6">
-                                    <h4>Москва</h4>
-                                    <div class="w_icons-sprite w_icons-tick_weather_{{ w_index }}"></div>
-                                </div>
-                                <div class="col-md-6 temp_c">{{ weather.data.current_condition.0.temp_C }}&deg;</div>
-                            </div>
-                            <div class="row sep"></div>
-                            <div class="row sm"></div>
+
+                {% if weather %}
+                <div class="col-md-4 col-md-offset-1 weather_wrap">
+                    <div class="row bg text-center">
+                        <div class="col-md-6">
+                            <h4>{{ weather.city_name }}</h4>
+                            <div class="w_icons-sprite w_icons-tick_weather_{{ weather.icon_id }}"></div>
                         </div>
-                    {% endif %}
+                        <div class="col-md-6 temp_c">{{ weather.temperature }}&deg;</div>
+                    </div>
+                    <div class="row sep"></div>
+                    <div class="row sm">
+                        {% for day in weather.forecast %}
+                        <div class="col-md-3 small-icons text-center">
+                            <h5>{{ day.day_of_week }}</h5>
+                            <div class="w_icons-sprite w_icons-tick_weather_{{ day.icon_id }}"></div>
+                            <h5>{{ day.temperature }}</h5>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
+                {% endif %}
             </div>
         </div>
         <div class="services_wrap">

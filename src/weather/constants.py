@@ -1,3 +1,5 @@
+#coding:utf-8
+
 WEATHER_DICT = {
     '113': {'day': '032', 'night': '033'},
     '116': {'day': '001', 'night': '033'},
@@ -47,4 +49,14 @@ WEATHER_DICT = {
     '389': {'day': '038', 'night': '038'},
     '392': {'day': '036', 'night': '037'},
     '395': {'day': '028','night': '029'}
+}
+
+WEATHER_FAIL = '010'
+
+CITY_DICT = {
+    'Moscow, Russia': u'Москва'
+}
+
+DAY_WEEK = {
+    0: u'ПН', 1: u'ВТ', 2: u'СР', 3: u'ЧТ', 4: u'ПТ', 5: u'СБ', 6: u'ВС'
 }
