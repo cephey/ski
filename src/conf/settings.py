@@ -84,6 +84,24 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # weather
 WEATHER_CITY = 'Moscow'
+# WEATHER_CITY = 'Kazan'
 WEATHER_CITY_TRANS = u'Москва'
+# WEATHER_CITY_TRANS = u'Казань'
+WEATHER_CITY_COORDINATES = ((55, 45, 20.83), (37, 37, 3.48))
+WEATHER_CITY_TIMEOFFSET = +4
 WEATHER_API_URL = 'http://api.worldweatheronline.com/free/v1/weather.ashx'
 WEATHER_API_KEY = '7wv697hms48fkth4b4r7hwtg'
+
+CACHES = {
+    "default": {
+        "BACKEND": "redis_cache.cache.RedisCache",
+        "LOCATION": "127.0.0.1:6379:1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "redis_cache.client.DefaultClient",
+        }
+    }
+}
+# for drop management
+ALL_CACHE_KEY = [
+    'weather_api'
+]

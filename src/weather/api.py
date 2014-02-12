@@ -1,6 +1,7 @@
 #coding:utf-8
 import requests
 from django.conf import settings
+from django.core.cache import cache
 
 from .exceptions import APIException, ApiRequestException, DayOfWeekException, TemperatureException
 from .helpers import get_icon_id, get_city_name, get_day_of_week, get_temperature
@@ -23,15 +24,17 @@ class WeatherAPI(object):
         Cache data from api response in json and return it
 
         """
-        data = None
-        try:
-            weather = requests.get(self.url)
-            if weather.status_code == 200:
-                data = weather.json().get('data', {})
-            else:
-                raise ApiRequestException
-        except:
-            raise APIException
+        data = cache.get('weather_api', None)
+        if not data:
+            try:
+                weather = requests.get(self.url)
+                if weather.status_code == 200:
+                    data = weather.json().get('data', {})
+                    cache.set('weather_api', data, timeout=5 * 60)
+                else:
+                    raise ApiRequestException
+            except:
+                raise APIException
 
         return data
 

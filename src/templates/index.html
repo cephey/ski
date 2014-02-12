@@ -5,50 +5,46 @@
 {% block body %}
 <div class="index_blur">
     <div class="container">
-        <div class="index_title">
-            <div class="row">
-                <div class="col-md-7">
-                    <h1>Прокат спортивного снаряжения</h1>
-                    <p>Мы готовы предложить вам лучшее снаряжение для занятий спортом и активным отдыхом. У вас появилась прекрасная возможность провести время с друзьями занимаясь любимыми видами спорта.</p>
-                    <p>Позвоните нам перед приездом и мы подготовим необходимое вам снаряжение заранее.</p>
-                </div>
+        <div class="index_title row">
+            <div class="col-md-7">
+                <h1>Прокат спортивного снаряжения</h1>
+                <p>Мы готовы предложить вам лучшее снаряжение для занятий спортом и активным отдыхом. У вас появилась прекрасная возможность провести время с друзьями занимаясь любимыми видами спорта.</p>
+                <p>Позвоните нам перед приездом и мы подготовим необходимое вам снаряжение заранее.</p>
+            </div>
 
-                {% if weather %}
-                <div class="col-md-4 col-md-offset-1 weather_wrap">
-                    <div class="row bg text-center">
-                        <div class="col-md-6">
-                            <h4>{{ weather.city_name }}</h4>
-                            <div class="w_icons-sprite w_icons-tick_weather_{{ weather.icon_id }}"></div>
-                        </div>
-                        <div class="col-md-6 temp_c">{{ weather.temperature }}&deg;</div>
+            {% if weather %}
+            <div class="col-md-4 col-md-offset-1 weather_wrap">
+                <div class="row bg text-center">
+                    <div class="col-md-6">
+                        <h4>{{ weather.city_name }}</h4>
+                        <div class="w_icons-sprite w_icons-tick_weather_{{ weather.icon_id }}"></div>
                     </div>
-                    <div class="row sep"></div>
-                    <div class="row sm">
-                        {% for day in weather.forecast %}
-                        <div class="col-md-3 small-icons text-center">
-                            <h5>{{ day.day_of_week }}</h5>
-                            <div class="w_icons-sprite w_icons-tick_weather_{{ day.icon_id }}"></div>
-                            <h5>{{ day.temperature }}</h5>
-                        </div>
-                        {% endfor %}
-                    </div>
+                    <div class="col-md-6 temp_c">{{ weather.temperature }}&deg;</div>
                 </div>
-                {% endif %}
-            </div>
-        </div>
-        <div class="services_wrap">
-            <div class="row">
-                {% for service in services %}
-                    <div class="col-md-3">
-                        <a href="">
-                            <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-circle img-responsive">
-                        </a>
-                        <h3>{{ service.title }}</h3>
-                        <p>{{ service.description }}</p>
-                        <button type="button" class="btn btn-success">Подробнее</button>
+                <div class="row sep"></div>
+                <div class="row sm">
+                    {% for day in weather.forecast %}
+                    <div class="col-md-3 small-icons text-center">
+                        <h5>{{ day.day_of_week }}</h5>
+                        <div class="w_icons-sprite w_icons-tick_weather_{{ day.icon_id }}"></div>
+                        <h5>{{ day.temperature }}</h5>
                     </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
+            {% endif %}
+        </div>
+        <div class="services_wrap row">
+            {% for service in services %}
+                <div class="col-md-3">
+                    <a href="{{ service.url_path }}">
+                        <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-circle img-responsive">
+                    </a>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.description }}</p>
+                    <a href="{{ service.url_path }}" class="btn btn-success" role="button">Подробнее</a>
+                </div>
+            {% endfor %}
         </div>
     </div>
 </div>

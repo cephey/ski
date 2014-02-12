@@ -1,8 +1,10 @@
 #coding:utf-8
+from datetime import datetime, date
+from django.utils.timezone import utc
 
-from datetime import datetime
 from .constants import WEATHER_DICT, WEATHER_FAIL, CITY_DICT, DAY_WEEK
 from .exceptions import DayOfWeekException, TemperatureException
+from .models import SolarEvent
 
 
 def get_temperature(condition):
@@ -58,8 +60,8 @@ def get_day_of_week(condition):
     """
     try:
         raw_date = condition['date']
-        date = datetime.strptime(raw_date, '%Y-%m-%d')
-        weekday = DAY_WEEK[date.weekday()]
+        _date = datetime.strptime(raw_date, '%Y-%m-%d')
+        weekday = DAY_WEEK[_date.weekday()]
     except KeyError:
         raise DayOfWeekException
 
@@ -72,7 +74,8 @@ def day_or_night(now=False):
 
     """
     if now:
-        # solve
-        return 'night'
-    else:
-        return 'day'
+        solar = SolarEvent.objects.get(date=date.today())
+        if not (solar.sunrise < datetime.now().replace(tzinfo=utc) < solar.sunset):
+            return 'night'
+
+    return 'day'

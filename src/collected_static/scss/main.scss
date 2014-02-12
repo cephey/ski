@@ -25,11 +25,12 @@ $footer_height: 100px;
     background: url(../i/blur.jpg) no-repeat 50% 0 $body_color;
     color: #fff;
     .index_title {
-        // height: 400px;
         padding: 50px 0 100px;
     }
     .services_wrap {
         background: url(../i/back_top.jpg) no-repeat 50% 0 $body_color;
+        padding-top: 20px;
+        padding-bottom: 30px;
         box-shadow: 0 0 0.4em #666;
         @include border-radius(3px);
         .col-md-3 {
@@ -39,17 +40,17 @@ $footer_height: 100px;
                 img {
                     cursor: pointer;
                     width: 80%;
-                    margin: 20px auto 10px;
+                    margin: 0 auto 10px;
                     box-shadow: 0 0 0.4em #444;
+                }
+                &.btn {
+                    cursor: pointer;
                 }
             }
             p {
                 width: 80%;
                 margin: 0 auto 20px;
                 padding-top: 5px;
-            }
-            button {
-                margin-bottom: 30px;
             }
         }
     }

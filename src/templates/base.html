@@ -16,17 +16,38 @@
     </head>
     <body>
         <div class="content_wrap">
-            {% include 'incl/header.html' %}
+            <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Скрытая навигация</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{% url 'pages:index' %}">Ski rent</a>
+                    </div>
 
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="#">Условия</a></li>
+                            <li><a href="#">Контакты</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
             {% block body %}{% endblock %}
         </div>
 
         <footer class="footer">
             <div class="container">
-                <div class="col-md-6">Copyright &copy; Ski rent 2014 Все права защищены</div>
-                <div class="col-md-6 right">
-                    {{ address }}<br/>{{ phones }}<br/><a href="http://vk.com/ski_rent">Мы Вконтакте</a>
+                <div class="row">
+                    <div class="col-md-6">Copyright &copy; Ski rent 2014 Все права защищены</div>
+                    <div class="col-md-6 right">
+                        {{ address }}<br/>{{ phones }}<br/><a href="http://vk.com/ski_rent">Мы Вконтакте</a>
+                    </div>
                 </div>
+            </div>
         </footer>
 
         <script src="{{ STATIC_URL }}js/jquery/jquery-2.1.0.min.js"></script>
