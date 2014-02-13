@@ -1,10 +1,11 @@
 #coding:utf-8
 from datetime import datetime, date
-from django.utils.timezone import utc
+from django.core.cache import cache
+from django.conf import settings
 
 from .constants import WEATHER_DICT, WEATHER_FAIL, CITY_DICT, DAY_WEEK
 from .exceptions import DayOfWeekException, TemperatureException
-from .models import SolarEvent
+from .solar import City, Sun
 
 
 def get_temperature(condition):
@@ -74,8 +75,41 @@ def day_or_night(now=False):
 
     """
     if now:
-        solar = SolarEvent.objects.get(date=date.today())
-        if not (solar.sunrise < datetime.now().replace(tzinfo=utc) < solar.sunset):
+        solar = get_sunrise_and_sunset()
+        if not (solar['sunrise'] < datetime.now() < solar['sunset']):
             return 'night'
 
     return 'day'
+
+
+def get_sunrise_and_sunset():
+    """
+    Return dict with sunrise and sunset time
+
+    """
+    data = cache.get('weather_sun', None)
+
+    if not data:
+        data = {}
+        city = City(
+            coordinates=settings.WEATHER_CITY_COORDINATES,
+            timeOffset=settings.WEATHER_CITY_TIMEOFFSET)
+
+        proxy = Sun(city)
+        proxy.getResult()
+        for k, v in proxy.dateRangeSun.items():
+            sunrise = datetime.combine(k, (datetime.min + v['Sunrise']['Offical']).time())
+            sunset = datetime.combine(k, (datetime.min + v['Sunset']['Offical']).time())
+
+            key = k.strftime('%Y-%m-%d')
+            data[key] = {
+                'sunrise': sunrise.strftime('%Y-%m-%d %H:%M:%S'),
+                'sunset': sunset.strftime('%Y-%m-%d %H:%M:%S')
+            }
+        cache.set('weather_sun', data, timeout=24 * 60 * 60)
+
+    now = data[date.today().strftime('%Y-%m-%d')]
+    return {
+        'sunrise': datetime.strptime(now['sunrise'], '%Y-%m-%d %H:%M:%S'),
+        'sunset': datetime.strptime(now['sunset'], '%Y-%m-%d %H:%M:%S')
+    }

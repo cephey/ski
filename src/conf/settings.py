@@ -103,5 +103,6 @@ CACHES = {
 }
 # for drop management
 ALL_CACHE_KEY = [
-    'weather_api'
+    'weather_api',
+    'weather_sun'
 ]

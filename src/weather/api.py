@@ -43,8 +43,10 @@ class WeatherAPI(object):
         Weather data for widget
 
         """
+        # TODO: need cache ``result``
         result = {}
         try:
+            # кеширую ответ сервера
             data = self.cache()
         except APIException:
             return None

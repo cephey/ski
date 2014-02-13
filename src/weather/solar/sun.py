@@ -1,13 +1,15 @@
 #coding:utf-8
-from datetime import  timedelta, date, datetime
+from datetime import date, timedelta
 from math import floor, sin, cos, tan, asin, acos, atan
 
-from django.utils.timezone import utc
+from .tools import time2deg, chSign, rad2deg, iterPair, deg2rad, deg2timeD
 
-from tools import *
-from cities import City
-from weather.models import SolarEvent
-from .exceptions import WrongCityObjectException, WrongPeriodException
+
+class City:
+	def __init__(self, coordinates, timeOffset):
+		self.latitude, self.longitude = [time2deg(x) for x in coordinates]
+		self.timeOffset = timeOffset
+
 
 class Sun:
 	def __init__(self, city):
@@ -16,29 +18,25 @@ class Sun:
 		#Объект - город, содержащий параметры координат и часового смещения
 		self.city = city
 		#Углы зенита для разных положения солнца
-		self.zenith = {'Offical': time2deg([90, 50, 0]),
-					   'Civil': time2deg([96, 0, 0]),
-					   'Nautical': time2deg([102, 0, 0]),
-					   'Astronomical': time2deg([108, 0, 0])}
+		self.zenith = {
+			'Offical': time2deg([90, 50, 0]),
+			'Civil': time2deg([96, 0, 0]),
+			'Nautical': time2deg([102, 0, 0]),
+			'Astronomical': time2deg([108, 0, 0])
+		}
 
 	#Главная функция
-	def getResult(self, dates=date.today().strftime('%d.%m.%Y')):
-		#Получаем диапазон дат, dstetime
-		dates = self._datesRange(dates)
-		#Для всез дат из диапазона
-		for focusDate in dates:
-			#Получаем параметры солнца
-			self._getSun(focusDate)
+	def getResult(self, dateBegin=date.today(), dateEnd=None):
+		""""""
+		dates = set([dateBegin])
+		if dateEnd:
+			dateBegin, dateEnd = sorted([dateBegin, dateEnd])
+			for i in range(1, (dateEnd - dateBegin).days + 1):
+				dates.add(dateBegin + timedelta(days=i))
 
-	#Создания списка дат из диапазона
-	def _datesRange(self, dates):
-		dates = {datetime.strptime(focusDate, '%d.%m.%Y').date() for focusDate in dates.split('-')}
-		if len(dates) == 2:
-			dateBegin, dateEnd = sorted(dates)
-			daysRange = dateEnd-dateBegin
-			for i in range(daysRange.days+1):
-				dates.add(dateBegin+timedelta(i))
-		return dates
+		#Для всез дат из диапазона получаем параметры солнца
+		for focusDate in dates:
+			self._getSun(focusDate)
 
 	#Получение параметров солнца
 	def _getSun(self, focusDate):
@@ -153,19 +151,3 @@ class Sun:
 				localT = deg2timeD(UT + self.city.timeOffset)
 			calculation[name] = localT
 		return calculation
-
-
-def fills_solar_event_table(period, city):
-	if not period or not isinstance(period, str):
-		raise WrongPeriodException
-
-	if not city or not isinstance(city, City):
-		raise WrongCityObjectException
-
-	proxy = Sun(city)
-	proxy.getResult(period)
-	for k, v in proxy.dateRangeSun.items():
-		sunrise = datetime.combine(k, (datetime.min + v['Sunrise']['Offical']).time()).replace(tzinfo=utc)
-		sunset = datetime.combine(k, (datetime.min + v['Sunset']['Offical']).time()).replace(tzinfo=utc)
-
-		SolarEvent.objects.create(date=k, sunrise=sunrise, sunset=sunset)
