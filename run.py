@@ -13,7 +13,16 @@ server {{
     access_log {log_dir}/{nginx_access_log_file};
     error_log {log_dir}/{nginx_log_file};
 
+    gzip on;
+    gzip_min_length 1000;
+    gzip_types text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript image/x-icon image/bmp;
+    gzip_proxied any;
+    gzip_vary on;
+    gzip_disable "msie6";
+    gzip_comp_level 8;
+
     location /static/ {{
+
         alias {project_dir}/src/static/;
     }}
 
