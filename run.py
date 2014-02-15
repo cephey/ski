@@ -10,6 +10,7 @@ NGINX_CONF = u"""upstream backend {{
 
 server {{
     listen 80;
+    access_log {log_dir}/{nginx_access_log_file};
     error_log {log_dir}/{nginx_log_file};
 
     location /static/ {{
@@ -78,7 +79,11 @@ CONF_DIR = os.path.join(PROJECT_DIR, NAME_CONF_DIR)
 # папка для логов
 NAME_LOG_DIR = 'logs'
 LOG_DIR = os.path.join(PROJECT_DIR, NAME_LOG_DIR)
-LOG_FILE_NAMES = {"gunicorn": "gunicorn_supervisor.log", "nginx": "nginx-error.log"}
+LOG_FILE_NAMES = {
+    "gunicorn": "gunicorn_supervisor.log",
+    "nginx": "nginx-error.log",
+    "nginx_access": "nginx-access.log"
+}
 
 GUNICORN_SCRIPT_NAME = 'gunicorn_start'
 GUNICORN_NUM_WORKERS = 3
@@ -134,6 +139,7 @@ if __name__ == "__main__":
             "num_workers": GUNICORN_NUM_WORKERS,
             "gunicorn_script_name": GUNICORN_SCRIPT_NAME,
             "nginx_log_file": LOG_FILE_NAMES['nginx'],
+            "nginx_access_log_file": LOG_FILE_NAMES['nginx_access'],
             "gunicorn_supervisor_log_file": LOG_FILE_NAMES['gunicorn']
         }
 
