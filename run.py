@@ -4,57 +4,54 @@
 
 import os
 
-NGINX_CONF = u"""upstream backend {
-    server unix:@!conf_dir!@/gunicorn.sock fail_timeout=0;
-}
+NGINX_CONF = u"""upstream backend {{
+    server unix:{conf_dir}/gunicorn.sock fail_timeout=0;
+}}
 
-server {
+server {{
     listen 80;
-    error_log @!log_dir!@/@!nginx_log_file!@;
+    error_log {log_dir}/{nginx_log_file};
 
-    location /static/ {
-        alias @!project_dir!@/src/static/;
-    }
+    location /static/ {{
+        alias {project_dir}/src/static/;
+    }}
 
-    location /media/ {
-        alias @!project_dir!@/src/media/;
-    }
+    location /media/ {{
+        alias {project_dir}/src/media/;
+    }}
 
-    location / {
+    location / {{
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;
         proxy_redirect off;
 
-        if (!-f $request_filename) {
+        if (!-f $request_filename) {{
             proxy_pass http://backend;
             break;
-        }
-    }
-}
+        }}
+    }}
+}}
 """
-SUPERVISOR_CONF = u"""[program:@!project_name!@]
-command = @!conf_dir!@/@!gunicorn_script_name!@ ;
-user = @!user!@ ;
-stdout_logfile = @!log_dir!@/@!gunicorn_supervisor_log_file!@ ;
+SUPERVISOR_CONF = u"""[program:{project_name}]
+command = {conf_dir}/{gunicorn_script_name} ;
+user = {user} ;
+stdout_logfile = {log_dir}/{gunicorn_supervisor_log_file} ;
 redirect_stderr = true
 """
-GUNICORN_CONF = u"""@!interpreter!@
+GUNICORN_CONF = u"""#!/bin/bash
 
 # virtualenv bin directory
-VIRTUALENV_DIR=@!workon_home!@/@!project_name!@/bin
+VIRTUALENV_DIR={workon_home}/{project_name}/bin
 
-DJANGODIR=@!project_dir!@/src
-SOCKFILE=$DJANGODIR/../@!name_conf_dir!@/gunicorn.sock
+DJANGODIR={project_dir}/src
+SOCKFILE=$DJANGODIR/../{name_conf_dir}/gunicorn.sock
 
-DJANGO_SETTINGS_MODULE=conf.settings
-DJANGO_WSGI_MODULE=conf.wsgi
-
-echo "Starting @!project_name!@_app"
+echo "Starting {project_name}_app"
 
 # Activate the virtual environment
 cd $DJANGODIR
 source $VIRTUALENV_DIR/activate
-export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export DJANGO_SETTINGS_MODULE=conf.settings
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
 # Create the run directory if it doesn't exist
@@ -62,10 +59,10 @@ RUNDIR=$(dirname $SOCKFILE)
 test -d $RUNDIR || mkdir -p $RUNDIR
 
 # Start Django Unicorn
-exec $VIRTUALENV_DIR/gunicorn ${DJANGO_WSGI_MODULE}:application \
---name @!project_name!@_app \
---workers @!num_workers!@ \
---user=@!user!@ --group=@!user!@ \
+exec $VIRTUALENV_DIR/gunicorn conf.wsgi:application \
+--name {project_name}_app \
+--workers {num_workers} \
+--user={user} --group={user} \
 --log-level=debug \
 --bind=unix:$SOCKFILE
 """
@@ -96,8 +93,7 @@ def create_file(target_dir, file_name, conf_name, context):
     Затем мы туда вставляем параметры из context
     """
     target_file = open(os.path.join(target_dir, file_name), 'w')
-    t = Template(conf_name)
-    target_file.write(t(**context))
+    target_file.write(conf_name.format(**context))
     target_file.close()
 
 if __name__ == "__main__":
@@ -109,12 +105,7 @@ if __name__ == "__main__":
         print ur'Воспользуйтесь "sudo apt-get install virtualenvwrapper"'
         exit(0)
 
-    try:
-        from pyratemp import Template
-    except ImportError:
-        print u'Сначало необходимо войти в виртуальное окружение'
-        print ur'и запустить "pip install -r requirements.txt"'
-        exit(0)
+    # TODO: необходимо проверить что пользователь зашёл в вируальное окружение
 
     if os.path.isdir(CONF_DIR):
         # если такая папка существует, ничего не делаю
@@ -139,7 +130,6 @@ if __name__ == "__main__":
             "conf_dir": CONF_DIR,
             "project_dir": PROJECT_DIR,
             "project_name": PROJECT_NAME,
-            "interpreter": '#!/bin/bash',
             "name_conf_dir": NAME_CONF_DIR,
             "num_workers": GUNICORN_NUM_WORKERS,
             "gunicorn_script_name": GUNICORN_SCRIPT_NAME,
