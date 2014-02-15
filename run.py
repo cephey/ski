@@ -22,12 +22,13 @@ server {{
     gzip_comp_level 8;
 
     location /static/ {{
-
         alias {project_dir}/src/static/;
+        expires 1d;
     }}
 
     location /media/ {{
         alias {project_dir}/src/media/;
+        expires 1d;
     }}
 
     location / {{

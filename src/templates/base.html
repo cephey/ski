@@ -6,13 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{% block title %}{% endblock %}</title>
-
-        <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="{{ STATIC_URL }}/css/main.css">
-        <!--[if lt IE 9]>
-            <script src="{{ STATIC_URL }}js/html5shiv.js"></script>
-            <script src="{{ STATIC_URL }}js/respond.min.js"></script>
-        <![endif]-->
     </head>
     <body>
         <div class="content_wrap">
@@ -50,6 +43,12 @@
             </div>
         </footer>
 
+        <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ STATIC_URL }}/css/main.css">
+        <!--[if lt IE 9]>
+            <script src="{{ STATIC_URL }}js/html5shiv.js"></script>
+            <script src="{{ STATIC_URL }}js/respond.min.js"></script>
+        <![endif]-->
         <script src="{{ STATIC_URL }}js/jquery/jquery-2.1.0.min.js"></script>
         <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
     </body>
