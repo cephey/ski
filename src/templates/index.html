@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load webdesign %}
 
 {% block title %}Главная страница{% endblock %}
 
@@ -6,10 +7,16 @@
 <div class="index_blur">
     <div class="container">
         <div class="index_title row">
-            <div class="col-md-7">
+            <div class="col-md-7 main_h1">
                 <h1>Прокат спортивного снаряжения</h1>
                 <p>Мы готовы предложить вам лучшее снаряжение для занятий спортом и активным отдыхом. У вас появилась прекрасная возможность провести время с друзьями занимаясь любимыми видами спорта.</p>
                 <p>Позвоните нам перед приездом и мы подготовим необходимое вам снаряжение заранее.</p>
+                <ul class="list-unstyled">
+                    <li><span class="glyphicon glyphicon-check"></span> {% lorem 4 w random %}</li>
+                    <li><span class="glyphicon glyphicon-check"></span> {% lorem 4 w random %}</li>
+                    <li><span class="glyphicon glyphicon-check"></span> {% lorem 4 w random %}</li>
+                    <li><span class="glyphicon glyphicon-check"></span> {% lorem 4 w random %}</li>
+                </ul>
             </div>
 
             {% if weather %}
