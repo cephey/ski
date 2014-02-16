@@ -22,7 +22,6 @@ html, body {
     .services_wrap {
         background: url(../i/back_top.jpg) no-repeat 50% 0;
         padding-top: 20px;
-        padding-bottom: 30px;
         box-shadow: 0 0 0.4em #123456;
         @include border-radius(3px);
         .col-md-3 {
@@ -37,6 +36,7 @@ html, body {
                 }
                 &.btn {
                     cursor: pointer;
+                    margin-bottom: 20px;
                 }
             }
             p {
@@ -44,6 +44,11 @@ html, body {
                 margin: 0 auto 20px;
                 padding-top: 5px;
             }
+        }
+    }
+    @media (max-width: 991px) {
+        .services_wrap {
+            background: url(../i/back_m.jpg) no-repeat 50% 0;
         }
     }
 }
@@ -64,12 +69,10 @@ html, body {
     }
 }
 .weather_wrap {
-    height: 300px;
     background: #222;
     @include border-radius(3px);
     box-shadow: 0 0 0.4em #222;
     .bg {
-        height: 57%;
         .temp_c {
             padding-top: 30px;
             font-size: 6em;
