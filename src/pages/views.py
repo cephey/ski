@@ -11,7 +11,8 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
 
-        context['weather'] = WeatherAPI()()
+        api = WeatherAPI()
+        context['weather'] = api.widget()
 
         context['services'] = ServicesText.objects.all()[:4]
         context['address'] = '420095 г. Казань, ул. Горьковское шоссе 49 к2'

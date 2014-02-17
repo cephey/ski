@@ -23,12 +23,12 @@ server {{
 
     location /static/ {{
         alias {project_dir}/src/static/;
-        expires 1d;
+        expires modified +10d;
     }}
 
     location /media/ {{
         alias {project_dir}/src/media/;
-        expires 1d;
+        expires modified +30d;
     }}
 
     location / {{

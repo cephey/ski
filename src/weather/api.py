@@ -1,10 +1,6 @@
 #coding:utf-8
 import requests
 from django.conf import settings
-# from django.core.cache import cache
-# from django.utils.decorators import method_decorator
-from pages.tools import cache
-# from django.views.decorators.cache import cache_page
 
 from .exceptions import APIException, ApiRequestException, DayOfWeekException, TemperatureException
 from .helpers import get_icon_id, get_city_name, get_day_of_week, get_temperature
@@ -38,8 +34,7 @@ class WeatherAPI(object):
 
         return data
 
-    @cache(5 * 60)
-    def __call__(self):
+    def widget(self):
         """
         Weather data for widget
 
