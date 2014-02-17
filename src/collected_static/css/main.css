@@ -443,6 +443,9 @@ html, body {
 .index_blur {
   background: url(../i/blur_2.jpg) no-repeat 50% 0;
   color: #fff; }
+  @media (max-width: 991px) {
+    .index_blur {
+      background: url(../i/blur_m_2.jpg) no-repeat 50% 0; } }
   .index_blur .index_title {
     padding: 50px 0 100px; }
     .index_blur .index_title .main_h1 {
@@ -454,6 +457,9 @@ html, body {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px; }
+    @media (max-width: 991px) {
+      .index_blur .services_wrap {
+        background: url(../i/back_m_1.jpg) no-repeat 50% 0; } }
     .index_blur .services_wrap .col-md-3 {
       text-align: center; }
       .index_blur .services_wrap .col-md-3 a {
@@ -470,32 +476,29 @@ html, body {
         width: 80%;
         margin: 0 auto 20px;
         padding-top: 5px; }
-  @media (max-width: 991px) {
-    .index_blur .services_wrap {
-      background: url(../i/back_m_1.jpg) no-repeat 50% 0; } }
 
 .content_wrap {
   min-height: 100%;
   height: auto !important;
   height: 100%;
   padding-bottom: 150px; }
+  @media (max-width: 767px) {
+    .content_wrap {
+      padding-bottom: 190px; } }
 
-@media (max-width: 767px) {
-  .content_wrap {
-    padding-bottom: 190px; } }
 .footer {
   padding-top: 20px;
-  margin-top: -100px;
   background: url(../i/pw_maze_black.png);
-  height: 100px;
-  color: #999; }
+  color: #999;
+  margin-top: -100px;
+  height: 100px; }
+  @media (max-width: 767px) {
+    .footer {
+      margin-top: -140px;
+      height: 140px; } }
   .footer .right {
     text-align: right; }
 
-@media (max-width: 767px) {
-  .footer {
-    margin-top: -140px;
-    height: 140px; } }
 .weather_wrap {
   background: #222;
   -webkit-border-radius: 3px;
