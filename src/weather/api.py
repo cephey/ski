@@ -1,7 +1,10 @@
 #coding:utf-8
 import requests
 from django.conf import settings
-from django.core.cache import cache
+# from django.core.cache import cache
+# from django.utils.decorators import method_decorator
+from pages.tools import cache
+# from django.views.decorators.cache import cache_page
 
 from .exceptions import APIException, ApiRequestException, DayOfWeekException, TemperatureException
 from .helpers import get_icon_id, get_city_name, get_day_of_week, get_temperature
@@ -19,35 +22,31 @@ class WeatherAPI(object):
         self.url = '{0}?q={1}&format=json&num_of_days={2}&key={3}'.format(
             settings.WEATHER_API_URL, settings.WEATHER_CITY, self.days, settings.WEATHER_API_KEY)
 
-    def cache(self):
+    def _api_response(self):
         """
-        Cache data from api response in json and return it
+        Get weather from API
 
         """
-        data = cache.get('weather_api', None)
-        if not data:
-            try:
-                weather = requests.get(self.url)
-                if weather.status_code == 200:
-                    data = weather.json().get('data', {})
-                    cache.set('weather_api', data, timeout=5 * 60)
-                else:
-                    raise ApiRequestException
-            except:
-                raise APIException
+        try:
+            weather = requests.get(self.url)
+            if weather.status_code == 200:
+                data = weather.json().get('data', {})
+            else:
+                raise ApiRequestException
+        except:
+            raise APIException
 
         return data
 
-    def widget(self):
+    @cache(5 * 60)
+    def __call__(self):
         """
         Weather data for widget
 
         """
-        # TODO: need cache ``result``
         result = {}
         try:
-            # кеширую ответ сервера
-            data = self.cache()
+            data = self._api_response()
         except APIException:
             return None
 
