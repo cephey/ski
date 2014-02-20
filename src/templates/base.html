@@ -23,9 +23,14 @@
                     </div>
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        {% block main_menu %}{% endblock %}
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="#">Условия</a></li>
-                            <li><a href="#">Контакты</a></li>
+                            <li class="{% block menu_uslov %}{% endblock %}">
+                                <a href="{% url 'pages:uslovia' %}">Условия</a>
+                            </li>
+                            <li class="{% block menu_cont %}{% endblock %}">
+                                <a href="{% url 'pages:contacts' %}">Контакты</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -38,7 +43,7 @@
                 <div class="row">
                     <div class="col-md-6">Copyright &copy; Ski rent 2014 Все права защищены</div>
                     <div class="col-md-6 right">
-                        {{ address }}<br/>{{ phones }}<br/><a href="http://vk.com/ski_rent">Мы Вконтакте</a>
+                        420095 г. Казань, ул. Горьковское шоссе 49 к2<br/>8 (843) 225-45-15, 8 917 252 45 15<br/><a href="http://vk.com/ski_rent">Мы Вконтакте</a>
                     </div>
                 </div>
             </div>

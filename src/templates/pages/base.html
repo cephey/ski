@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block main_menu %}
+<ul class="nav navbar-nav">
+    <li class="{% block menu_velo %}{% endblock %}">
+        <a href="{% url 'pages:velosipedy' %}">Велосипеды</a>
+    </li>
+    <li class="{% block menu_palat %}{% endblock %}">
+        <a href="{% url 'pages:palatki' %}">Палатки</a>
+    </li>
+    <li class="{% block menu_snow %}{% endblock %}">
+        <a href="{% url 'pages:snoubordy' %}">Сноуборды</a>
+    </li>
+    <li class="{% block menu_ski %}{% endblock %}">
+        <a href="{% url 'pages:gornye_lyzhi' %}">Горные лыжи</a>
+    </li>
+</ul>
+{% endblock %}
