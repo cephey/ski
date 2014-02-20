@@ -3,6 +3,7 @@
 # Создаёт конфигурацию для nginx, gunicorn и supervisor
 
 import os
+import stat
 
 NGINX_CONF = u"""upstream backend {{
     server unix:{conf_dir}/gunicorn.sock fail_timeout=0;
@@ -161,6 +162,10 @@ if __name__ == "__main__":
 
         # настройка для supervisor
         create_file(CONF_DIR, '%s.conf' % PROJECT_NAME, SUPERVISOR_CONF, context)
+
+        # делаю скрипт запуска gunicorn исполняемым
+        st = os.stat(os.path.join(CONF_DIR, GUNICORN_SCRIPT_NAME))
+        os.chmod(os.path.join(CONF_DIR, GUNICORN_SCRIPT_NAME), st.st_mode | stat.S_IEXEC)
 
         # создаю пустые файлы логов
         if not os.path.isdir(LOG_DIR):
