@@ -1,14 +1,26 @@
 #coding:utf-8
 import os
+import json
+from ConfigParser import RawConfigParser
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+config = RawConfigParser()
+config.read(os.path.join(BASE_DIR, 'settings.ini'))
+
+########## Версия сайта #####
+CONF = 'kazan_prod'
+# Доступные варианты:
+#   kazan_prod
+#   moscow_dev
+#############################
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'zlxl$x&65voq5+%d&8wo^@_hf_i&fre!%xm&9#zq9e)jo+e9b#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
+DEBUG = config.get(CONF, 'DEBUG')
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -26,7 +38,6 @@ INSTALLED_APPS = (
 
     'south',
     'pages',
-    'weather',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,12 +98,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # weather
-WEATHER_CITY = 'Moscow'
-# WEATHER_CITY = 'Kazan'
-WEATHER_CITY_TRANS = u'Москва'
-# WEATHER_CITY_TRANS = u'Казань'
-WEATHER_CITY_COORDINATES = ((55, 45, 20.83), (37, 37, 3.48))
-WEATHER_CITY_TIMEOFFSET = +4
+WEATHER_CITY = config.get(CONF, 'WEATHER_CITY')
+WEATHER_CITY_TRANS = config.get(CONF, 'WEATHER_CITY_TRANS')
+WEATHER_CITY_COORDINATES = json.loads(config.get(CONF, 'WEATHER_CITY_COORDINATES'))
+WEATHER_CITY_TIMEOFFSET = config.getint(CONF, 'WEATHER_CITY_TIMEOFFSET')
 WEATHER_API_URL = 'http://api.worldweatheronline.com/free/v1/weather.ashx'
 WEATHER_API_KEY = '7wv697hms48fkth4b4r7hwtg'
 
