@@ -5,5 +5,44 @@
 {% block menu_velo %}active{% endblock %}
 
 {% block body %}
-<div class="container">{% lorem 5 p random %}</div>
+<div class="velo_wrap">
+    <div class="container">
+        <div class="velo_title row">
+            <div class="velo_h1 col-md-6 col-md-offset-5">
+                <h1>Велосипеды</h1>
+                <p>Весело провести время в компании друзей, неспешно прогуляться по городу или проверить себя на выносливость в настоящем велопробеге вы сможете взяв напрокат велосипеды.</p>
+                <p>{% lorem 7 w random %}</p>
+            </div>
+        </div>
+        <div class="level_wrap row">
+            <div class="col-md-4">
+                <div class="column_wrap text-center">
+                    <div class="level_img">
+                        <img src="{{ STATIC_URL }}/i/stels.jpg" title="" class="img-responsive">
+                    </div>
+                    <h4>Любительский уровень</h4>
+                    <div class="level_text"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="column_wrap text-center">
+                    <div class="level_img">
+                        <img src="{{ STATIC_URL }}/i/merida.jpg" title="" class="img-responsive">
+                    </div>
+                    <h4>Начальный уровень</h4>
+                    <div class="level_text"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="column_wrap text-center">
+                    <div class="level_img">
+                        <img src="{{ STATIC_URL }}/i/stels_s.jpg" title="" class="img-responsive">
+                    </div>
+                    <h4>Подростковые</h4>
+                    <div class="level_text"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

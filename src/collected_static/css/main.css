@@ -439,44 +439,6 @@ html, body {
   height: 100%;
   background: #ddddff; }
 
-/*  */
-.index_blur {
-  background: url(../i/blur_2.jpg) no-repeat 50% 0;
-  color: #fff; }
-  @media (max-width: 991px) {
-    .index_blur {
-      background: url(../i/blur_m_2.jpg) no-repeat 50% 0; } }
-  .index_blur .index_title {
-    padding: 50px 0 100px; }
-    .index_blur .index_title .main_h1 {
-      text-shadow: 0 0 2px #000, 0 0 3px #ddd, 0 0 4px #000; }
-  .index_blur .services_wrap {
-    background: url(../i/back_top_1.jpg) no-repeat 50% 0;
-    padding-top: 20px;
-    box-shadow: 0 0 0.4em #123456;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px; }
-    @media (max-width: 991px) {
-      .index_blur .services_wrap {
-        background: url(../i/back_m_1.jpg) no-repeat 50% 0; } }
-    .index_blur .services_wrap .col-md-3 {
-      text-align: center; }
-      .index_blur .services_wrap .col-md-3 a {
-        cursor: default; }
-        .index_blur .services_wrap .col-md-3 a img {
-          cursor: pointer;
-          width: 80%;
-          margin: 0 auto 10px;
-          box-shadow: 0 0 0.4em #444; }
-        .index_blur .services_wrap .col-md-3 a.btn {
-          cursor: pointer;
-          margin-bottom: 20px; }
-      .index_blur .services_wrap .col-md-3 p {
-        width: 80%;
-        margin: 0 auto 20px;
-        padding-top: 5px; }
-
 .content_wrap {
   min-height: 100%;
   height: auto !important;
@@ -499,6 +461,43 @@ html, body {
   .footer .right {
     text-align: right; }
 
+.index_wrap {
+  background: url(../i/blur_2.jpg) no-repeat 50% 0;
+  color: #fff; }
+  @media (max-width: 991px) {
+    .index_wrap {
+      background: url(../i/blur_m_2.jpg) no-repeat 50% 0; } }
+  .index_wrap .index_title {
+    padding: 50px 0 100px; }
+    .index_wrap .index_title .main_h1 {
+      text-shadow: 0 0 2px #000, 0 0 3px #ddd, 0 0 4px #000; }
+  .index_wrap .services_wrap {
+    background: url(../i/back_top_1.jpg) no-repeat 50% 0;
+    padding-top: 20px;
+    box-shadow: 0 0 0.4em #123456;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px; }
+    @media (max-width: 991px) {
+      .index_wrap .services_wrap {
+        background: url(../i/back_m_1.jpg) no-repeat 50% 0; } }
+    .index_wrap .services_wrap .col-md-3 {
+      text-align: center; }
+      .index_wrap .services_wrap .col-md-3 a {
+        cursor: default; }
+        .index_wrap .services_wrap .col-md-3 a img {
+          cursor: pointer;
+          width: 80%;
+          margin: 0 auto 10px;
+          box-shadow: 0 0 0.4em #444; }
+        .index_wrap .services_wrap .col-md-3 a.btn {
+          cursor: pointer;
+          margin-bottom: 20px; }
+      .index_wrap .services_wrap .col-md-3 p {
+        width: 80%;
+        margin: 0 auto 20px;
+        padding-top: 5px; }
+
 .weather_wrap {
   background: #222;
   -webkit-border-radius: 3px;
@@ -519,3 +518,24 @@ html, body {
   .weather_wrap .sm > div {
     width: 25%;
     float: left; }
+
+.velo_wrap {
+  background: url(../i/velo.jpg) no-repeat 50% 0; }
+  .velo_wrap .velo_title {
+    padding: 30px 0 100px; }
+  .velo_wrap .level_wrap .column_wrap {
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 0 0 0.4em #444;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    overflow: hidden; }
+    .velo_wrap .level_wrap .column_wrap h4 {
+      color: #fff;
+      padding: 20px 0;
+      margin: 0;
+      background: #e52; }
+    .velo_wrap .level_wrap .column_wrap .level_text {
+      height: 100px;
+      background: #eee; }

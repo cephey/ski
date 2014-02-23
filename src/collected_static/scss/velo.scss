@@ -1,0 +1,27 @@
+@import 'mixins';
+
+.velo_wrap {
+    background: url(../i/velo.jpg) no-repeat 50% 0;
+    .velo_title {
+        padding: 30px 0 100px;
+    }
+    .level_wrap {
+        .column_wrap {
+            width: 80%;
+            margin: 0 auto;
+            box-shadow: 0 0 0.4em #444;
+            @include border-radius(3px);
+            overflow: hidden;
+            h4 {
+                color: #fff;
+                padding: 20px 0;
+                margin: 0;
+                background: #e52;
+            }
+            .level_text {
+                height: 100px;
+                background: #eee;
+            }
+        }
+    }
+}

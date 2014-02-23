@@ -1,0 +1,71 @@
+@import 'mixins';
+
+.index_wrap {
+    background: url(../i/blur_2.jpg) no-repeat 50% 0;
+    @media (max-width: 991px) {
+        background: url(../i/blur_m_2.jpg) no-repeat 50% 0;
+    }
+    color: #fff;
+    .index_title {
+        padding: 50px 0 100px;
+        .main_h1 {
+            text-shadow: 0 0 2px #000, 0 0 3px #ddd, 0 0 4px #000;
+        }
+    }
+    .services_wrap {
+        background: url(../i/back_top_1.jpg) no-repeat 50% 0;
+        @media (max-width: 991px) {
+            background: url(../i/back_m_1.jpg) no-repeat 50% 0;
+        }
+        padding-top: 20px;
+        box-shadow: 0 0 0.4em #123456;
+        @include border-radius(3px);
+        .col-md-3 {
+            text-align: center;
+            a {
+                cursor: default;
+                img {
+                    cursor: pointer;
+                    width: 80%;
+                    margin: 0 auto 10px;
+                    box-shadow: 0 0 0.4em #444;
+                }
+                &.btn {
+                    cursor: pointer;
+                    margin-bottom: 20px;
+                }
+            }
+            p {
+                width: 80%;
+                margin: 0 auto 20px;
+                padding-top: 5px;
+            }
+        }
+    }
+}
+
+.weather_wrap {
+    background: #222;
+    @include border-radius(3px);
+    box-shadow: 0 0 0.4em #222;
+    .bg {
+        & > div {
+            width: 50%;
+            float: left;
+        }
+        .temp_c {
+            padding-top: 30px;
+            font-size: 6em;
+        }
+    }
+    .sep {
+        height: 1px;
+        width: 100%;
+        margin: 0 auto;
+        background: #444;
+    }
+    .sm > div {
+        width: 25%;
+        float: left;
+    }
+}

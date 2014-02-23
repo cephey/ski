@@ -4,7 +4,7 @@
 {% block title %}Главная страница{% endblock %}
 
 {% block body %}
-<div class="index_blur">
+<div class="index_wrap">
     <div class="container">
         <div class="index_title row">
             <div class="col-md-7 main_h1">
@@ -20,7 +20,7 @@
             </div>
 
             {% if weather %}
-            <div class="col-md-4 col-md-offset-1 weather_wrap">
+            <div class="weather_wrap col-md-4 col-md-offset-1">
                 <div class="row bg text-center">
                     <div class="col-md-6">
                         <h4>{{ weather.city_name }}</h4>

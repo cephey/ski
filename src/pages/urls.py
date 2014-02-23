@@ -6,9 +6,8 @@ from pages.views import IndexView, VeloView, PalatView, SnowView, SkiView, Uslov
 urlpatterns = patterns(
     '',
     url(r'^$', cache_page(5 * 60)(IndexView.as_view()), name='index'),
-    # url(r'^$', IndexView.as_view(), name='index'),
 
-    url(r'^velosipedy/$', VeloView.as_view(), name='velosipedy'),
+    url(r'^velosipedy/$', cache_page(60 * 60)(VeloView.as_view()), name='velosipedy'),
     url(r'^palatki/$', PalatView.as_view(), name='palatki'),
     url(r'^snoubordy/$', SnowView.as_view(), name='snoubordy'),
     url(r'^gornye_lyzhi/$', SkiView.as_view(), name='gornye_lyzhi'),

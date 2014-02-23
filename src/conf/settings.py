@@ -9,7 +9,7 @@ config = RawConfigParser()
 config.read(os.path.join(BASE_DIR, 'settings.ini'))
 
 ########## Версия сайта #####
-CONF = 'kazan_prod'
+CONF = 'moscow_dev'
 # Доступные варианты:
 #   kazan_prod
 #   moscow_dev
@@ -107,7 +107,7 @@ WEATHER_API_KEY = '7wv697hms48fkth4b4r7hwtg'
 
 CACHES = {
     "default": {
-        "BACKEND": "redis_cache.cache.RedisCache",
+        "BACKEND": config.get(CONF, 'CACHES_BACKEND'),
         "LOCATION": "127.0.0.1:6379:1",
         "OPTIONS": {
             "CLIENT_CLASS": "redis_cache.client.DefaultClient",
