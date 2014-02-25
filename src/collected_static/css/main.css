@@ -2,6 +2,13 @@
   font-family: Knewave;
   src: url("../fonts/Knewave-Regular.ttf"); }
 
+@font-face {
+  font-family: Als_rublregular;
+  src: url("../fonts/rouble/rouble-webfont.eot");
+  src: url("../fonts/rouble/rouble-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/rouble/rouble-webfont.woff") format("woff"), url("../fonts/rouble/rouble-webfont.ttf") format("truetype"), url("../fonts/rouble/rouble-webfont.svg#als_rublregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 /* line 242, w_icons/*.png */
 .w_icons-sprite, .w_icons-tick_weather_001, .w_icons-tick_weather_008, .w_icons-tick_weather_009, .w_icons-tick_weather_010, .w_icons-tick_weather_011, .w_icons-tick_weather_012, .w_icons-tick_weather_014, .w_icons-tick_weather_015, .w_icons-tick_weather_016, .w_icons-tick_weather_018, .w_icons-tick_weather_019, .w_icons-tick_weather_020, .w_icons-tick_weather_021, .w_icons-tick_weather_022, .w_icons-tick_weather_023, .w_icons-tick_weather_024, .w_icons-tick_weather_025, .w_icons-tick_weather_028, .w_icons-tick_weather_029, .w_icons-tick_weather_030, .w_icons-tick_weather_031, .w_icons-tick_weather_032, .w_icons-tick_weather_033, .w_icons-tick_weather_036, .w_icons-tick_weather_037, .w_icons-tick_weather_038 {
   background: url("../i/w_icons-s14688ba3d0.png") no-repeat;
@@ -524,7 +531,7 @@ html, body {
   .velo_wrap .velo_title {
     padding: 30px 0 100px; }
   .velo_wrap .level_wrap .column_wrap {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     box-shadow: 0 0 0.4em #444;
     -webkit-border-radius: 3px;
@@ -537,5 +544,32 @@ html, body {
       margin: 0;
       background: #e52; }
     .velo_wrap .level_wrap .column_wrap .level_text {
-      height: 100px;
-      background: #eee; }
+      background: #222;
+      font-size: 1.4em;
+      color: #fff;
+      text-align: left; }
+      .velo_wrap .level_wrap .column_wrap .level_text .price_wrap {
+        padding-left: 18%; }
+        @media (max-width: 991px) {
+          .velo_wrap .level_wrap .column_wrap .level_text .price_wrap {
+            padding-left: 35%; } }
+        .velo_wrap .level_wrap .column_wrap .level_text .price_wrap div {
+          display: inline-block;
+          vertical-align: top; }
+        .velo_wrap .level_wrap .column_wrap .level_text .price_wrap .rub {
+          padding-top: .2em;
+          font-family: Als_rublregular; }
+        .velo_wrap .level_wrap .column_wrap .level_text .price_wrap .price {
+          font-size: 1.4em;
+          font-weight: bold; }
+          .velo_wrap .level_wrap .column_wrap .level_text .price_wrap .price span {
+            color: #f99; }
+        .velo_wrap .level_wrap .column_wrap .level_text .price_wrap .period {
+          color: #999; }
+        .velo_wrap .level_wrap .column_wrap .level_text .price_wrap:hover {
+          background: #282828; }
+  .velo_wrap .level_wrap .desc {
+    width: 90%;
+    margin: 10px auto;
+    font-size: 1.5em;
+    padding-left: 2%; }

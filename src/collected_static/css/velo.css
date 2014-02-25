@@ -3,7 +3,7 @@
   .velo_wrap .velo_title {
     padding: 30px 0 100px; }
   .velo_wrap .level_wrap .column_wrap {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     box-shadow: 0 0 0.4em #444;
     -webkit-border-radius: 3px;
@@ -16,5 +16,32 @@
       margin: 0;
       background: #e52; }
     .velo_wrap .level_wrap .column_wrap .level_text {
-      height: 100px;
-      background: #eee; }
+      background: #222;
+      font-size: 1.4em;
+      color: #fff;
+      text-align: left; }
+      .velo_wrap .level_wrap .column_wrap .level_text .price_wrap {
+        padding-left: 18%; }
+        @media (max-width: 991px) {
+          .velo_wrap .level_wrap .column_wrap .level_text .price_wrap {
+            padding-left: 35%; } }
+        .velo_wrap .level_wrap .column_wrap .level_text .price_wrap div {
+          display: inline-block;
+          vertical-align: top; }
+        .velo_wrap .level_wrap .column_wrap .level_text .price_wrap .rub {
+          padding-top: .2em;
+          font-family: Als_rublregular; }
+        .velo_wrap .level_wrap .column_wrap .level_text .price_wrap .price {
+          font-size: 1.4em;
+          font-weight: bold; }
+          .velo_wrap .level_wrap .column_wrap .level_text .price_wrap .price span {
+            color: #f99; }
+        .velo_wrap .level_wrap .column_wrap .level_text .price_wrap .period {
+          color: #999; }
+        .velo_wrap .level_wrap .column_wrap .level_text .price_wrap:hover {
+          background: #282828; }
+  .velo_wrap .level_wrap .desc {
+    width: 90%;
+    margin: 10px auto;
+    font-size: 1.5em;
+    padding-left: 2%; }

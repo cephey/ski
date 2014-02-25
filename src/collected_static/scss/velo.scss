@@ -7,7 +7,7 @@
     }
     .level_wrap {
         .column_wrap {
-            width: 80%;
+            width: 90%;
             margin: 0 auto;
             box-shadow: 0 0 0.4em #444;
             @include border-radius(3px);
@@ -19,9 +19,44 @@
                 background: #e52;
             }
             .level_text {
-                height: 100px;
-                background: #eee;
+                background: #222;
+                font-size: 1.4em;
+                color: #fff;
+                text-align: left;
+                .price_wrap {
+                    padding-left: 18%;
+                    @media (max-width: 991px) {
+                        padding-left: 35%;
+                    }
+                    div {
+                        display: inline-block;
+                        vertical-align: top;
+                    }
+                    .rub {
+                        padding-top: .2em;
+                        font-family: Als_rublregular;
+                    }
+                    .price {
+                        font-size: 1.4em;
+                        font-weight: bold;
+                        span {
+                            color: #f99;
+                        }
+                    }
+                    .period {
+                        color: #999;
+                    }
+                    &:hover {
+                        background: #282828;
+                    }
+                }
             }
+        }
+        .desc {
+            width: 90%;
+            margin: 10px auto;
+            font-size: 1.5em;
+            padding-left: 2%;
         }
     }
 }
