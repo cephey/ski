@@ -9,7 +9,7 @@ config = RawConfigParser()
 config.read(os.path.join(BASE_DIR, 'settings.ini'))
 
 ########## Версия сайта #####
-CONF = 'moscow_dev'
+CONF = 'kazan_prod'
 # Доступные варианты:
 #   kazan_prod
 #   moscow_dev
