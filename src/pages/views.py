@@ -1,7 +1,7 @@
 #coding: utf-8
 from django.views.generic.base import TemplateView
 
-from pages.models import ServicesText
+from pages.models import ServicesText, VeloLevel
 from weather.api import WeatherAPI
 
 
@@ -23,6 +23,8 @@ class VeloView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(VeloView, self).get_context_data(**kwargs)
+
+        context['levels'] = VeloLevel.objects.prefetch_related('velo_price__period')
 
         return context
 

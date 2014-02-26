@@ -15,122 +15,30 @@
             </div>
         </div>
         <div class="level_wrap row">
+            {% for level in levels %}
             <div class="col-md-4">
                 <div class="column_wrap text-center">
                     <div class="level_img">
-                        <img src="{{ STATIC_URL }}/i/merida.jpg" title="" class="img-responsive">
+                        <img src="{{ level.image.url }}" title="{{ level.name }}" class="img-responsive">
                     </div>
-                    <h4>Начальный уровень</h4>
+                    <h4>{{ level.name }}</h4>
                     <div class="level_text">
+                        {% for p in level.velo_price.all %}
                         <div class="price_wrap">
                             <div class="rub">a</div>
-                            <div class="price">120</div>
-                            <div class="period">&nbsp;час</div>
+                            <div class="price">
+                                {{ p.price }}{% if p.holyday %}/<span>{{ p.holyday }}*</span>{% endif %}
+                            </div>
+                            <div class="period">&nbsp;{{ p.period }}</div>
                         </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">250/<span>300*</span></div>
-                            <div class="period">&nbsp;3 часа</div>
-                        </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">300/<span>350*</span></div>
-                            <div class="period">&nbsp;5 часов</div>
-                        </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">400</div>
-                            <div class="period">&nbsp;день</div>
-                        </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">500</div>
-                            <div class="period">&nbsp;сутки</div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-                <div class="desc">* - выходные дни</div>
+                {% if forloop.first %}
+                    <div class="desc">* - выходные дни</div>
+                {% endif %}
             </div>
-            <div class="col-md-4">
-                <div class="column_wrap text-center">
-                    <div class="level_img">
-                        <img src="{{ STATIC_URL }}/i/stels_s.jpg" title="" class="img-responsive">
-                    </div>
-                    <h4>Подростковые</h4>
-                    <div class="level_text">
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">80</div>
-                            <div class="period">&nbsp;час</div>
-                        </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">250</div>
-                            <div class="period">&nbsp;5 часов</div>
-                        </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">300</div>
-                            <div class="period">&nbsp;день</div>
-                        </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">400</div>
-                            <div class="period">&nbsp;сутки</div>
-                        </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">700</div>
-                            <div class="period">&nbsp;2 суток</div>
-                        </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">1000</div>
-                            <div class="period">&nbsp;3 суток</div>
-                        </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">1600</div>
-                            <div class="period">&nbsp;неделя</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="column_wrap text-center">
-                    <div class="level_img">
-                        <img src="{{ STATIC_URL }}/i/stels.jpg" title="" class="img-responsive">
-                    </div>
-                    <h4>Любительский уровень</h4>
-                    <div class="level_text">
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">150</div>
-                            <div class="period">&nbsp;час</div>
-                        </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">350</div>
-                            <div class="period">&nbsp;3 часа</div>
-                        </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">400</div>
-                            <div class="period">&nbsp;5 часов</div>
-                        </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">500</div>
-                            <div class="period">&nbsp;день</div>
-                        </div>
-                        <div class="price_wrap">
-                            <div class="rub">a</div>
-                            <div class="price">600</div>
-                            <div class="period">&nbsp;сутки</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
