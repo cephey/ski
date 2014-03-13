@@ -1,4 +1,6 @@
 #coding:utf-8
+import logging
+
 from datetime import datetime, date
 from django.core.cache import cache
 from django.conf import settings
@@ -35,6 +37,7 @@ def get_icon_id(condition, now=False):
         raw_id = condition['weatherCode']
         id = WEATHER_DICT[raw_id][day_or_night(now)]
     except KeyError:
+        logging.error(u'{}, {}'.format(raw_id, day_or_night(now)))
         return WEATHER_FAIL
 
     return id
