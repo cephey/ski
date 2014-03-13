@@ -1,6 +1,4 @@
 #coding:utf-8
-import logging
-
 from datetime import datetime, date
 from django.core.cache import cache
 from django.conf import settings
@@ -8,10 +6,6 @@ from django.conf import settings
 from .constants import WEATHER_DICT, WEATHER_FAIL, CITY_DICT, DAY_WEEK
 from .exceptions import DayOfWeekException, TemperatureException
 from .solar import City, Sun
-
-logging.basicConfig(
-    filename='log_filename.txt', level=logging.DEBUG,
-    format='%(asctime)s.%(msecs)d %(levelname)s in \'%(module)s\' at line %(lineno)d: %(message)s')
 
 
 def get_temperature(condition):
@@ -39,10 +33,6 @@ def get_icon_id(condition, now=False):
     """
     try:
         raw_id = condition['weatherCode']
-        try:
-            day_or_night(now)
-        except Exception as e:
-            logging.error(u'{}'.format(e.message))
         id = WEATHER_DICT[raw_id][day_or_night(now)]
     except KeyError:
         return WEATHER_FAIL
@@ -116,7 +106,7 @@ def get_sunrise_and_sunset():
                 'sunrise': sunrise.strftime('%Y-%m-%d %H:%M:%S'),
                 'sunset': sunset.strftime('%Y-%m-%d %H:%M:%S')
             }
-        cache.set('weather_sun', data, timeout=24 * 60 * 60)
+        cache.set('weather_sun', data, timeout=2 * 60 * 60)
 
     now = data[date.today().strftime('%Y-%m-%d')]
     return {
