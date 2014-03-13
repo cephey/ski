@@ -9,6 +9,8 @@ from .constants import WEATHER_DICT, WEATHER_FAIL, CITY_DICT, DAY_WEEK
 from .exceptions import DayOfWeekException, TemperatureException
 from .solar import City, Sun
 
+logging.basicConfig(filename='log_filename.txt', level=logging.ERROR)
+
 
 def get_temperature(condition):
     """
