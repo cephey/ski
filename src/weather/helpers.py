@@ -44,6 +44,7 @@ def get_icon_id(condition, now=False):
         logging.error(u'{}, {}'.format(raw_id, day_or_night(now)))
         id = WEATHER_DICT[raw_id][day_or_night(now)]
     except KeyError:
+        logging.error(u'{}'.format('KeyError'))
         return WEATHER_FAIL
 
     return id
