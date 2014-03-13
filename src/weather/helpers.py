@@ -9,7 +9,9 @@ from .constants import WEATHER_DICT, WEATHER_FAIL, CITY_DICT, DAY_WEEK
 from .exceptions import DayOfWeekException, TemperatureException
 from .solar import City, Sun
 
-logging.basicConfig(filename='log_filename.txt', level=logging.ERROR)
+logging.basicConfig(
+    filename='log_filename.txt', level=logging.DEBUG,
+    format='%(asctime)s.%(msecs)d %(levelname)s in \'%(module)s\' at line %(lineno)d: %(message)s')
 
 
 def get_temperature(condition):
@@ -37,9 +39,9 @@ def get_icon_id(condition, now=False):
     """
     try:
         raw_id = condition['weatherCode']
+        logging.error(u'{}, {}'.format(raw_id, day_or_night(now)))
         id = WEATHER_DICT[raw_id][day_or_night(now)]
     except KeyError:
-        logging.error(u'{}, {}'.format(raw_id, day_or_night(now)))
         return WEATHER_FAIL
 
     return id
