@@ -38,13 +38,13 @@ def get_icon_id(condition, now=False):
 
     """
     try:
-        if 'weatherCode' in condition:
-            logging.error(u'{}'.format(condition['weatherCode']))
         raw_id = condition['weatherCode']
-        logging.error(u'{}, {}'.format(raw_id, day_or_night(now)))
+        try:
+            day_or_night(now)
+        except Exception as e:
+            logging.error(u'{}'.format(e.message))
         id = WEATHER_DICT[raw_id][day_or_night(now)]
     except KeyError:
-        logging.error(u'{}'.format('KeyError'))
         return WEATHER_FAIL
 
     return id
