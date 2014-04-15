@@ -106,7 +106,7 @@ def get_sunrise_and_sunset():
                 'sunrise': sunrise.strftime('%Y-%m-%d %H:%M:%S'),
                 'sunset': sunset.strftime('%Y-%m-%d %H:%M:%S')
             }
-        cache.set('weather_sun', data, timeout=1 * 60 * 60)
+        cache.set('weather_sun', data, timeout=2 * 60 * 60)
 
     now = data[date.today().strftime('%Y-%m-%d')]
     return {
