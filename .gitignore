@@ -6,3 +6,6 @@ local_settings.py
 .tags
 src/static/*
 conf/*
+
+# idea
+.idea/*
